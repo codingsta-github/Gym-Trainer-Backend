@@ -5,5 +5,25 @@
     "express": "^4.18.1",
     "mongodb": "^4.5.0",
     "nodemon": "^2.0.16"
-  }
+  },
+  "name": "gym_trainer_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start":"node index.js",
+    "start-dev":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codingsta-github/Gym-Trainer-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codingsta-github/Gym-Trainer-Backend/issues"
+  },
+  "homepage": "https://github.com/codingsta-github/Gym-Trainer-Backend#readme",
+  "description": ""
 }
