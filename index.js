@@ -20,10 +20,17 @@ async function run() {
   try {
     client.connect();
     const serviceCollection = client.db("gym-trainer").collection("service");
+    const productCollection = client.db("gym-trainer").collection("product");
+
 
     app.get("/service", async (req, res) => {
       const query = {};
       const results = await serviceCollection.find(query).toArray();
+      res.send(results);
+    });
+    app.get("/product", async (req, res) => {
+      const query = {};
+      const results = await productCollection.find(query).toArray();
       res.send(results);
     });
     app.get("/ServiceCart/:id", async (req, res) => {
