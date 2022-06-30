@@ -20,20 +20,19 @@ async function run() {
   try {
     client.connect();
     const serviceCollection = client.db("gym-trainer").collection("service");
-    const productCollection = client.db("gym-trainer").collection("product");
 
 
-    app.get("/service", async (req, res) => {
-      const query = {};
+    app.get("/workout", async (req, res) => {
+      const query = {category:"workout training"};
       const results = await serviceCollection.find(query).toArray();
       res.send(results);
     });
     app.get("/product", async (req, res) => {
-      const query = {};
-      const results = await productCollection.find(query).toArray();
+      const query = {category:"product"};
+      const results = await serviceCollection.find(query).toArray();
       res.send(results);
     });
-    app.get("/ServiceCart/:id", async (req, res) => {
+    app.get("/details/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await serviceCollection.findOne(query);
