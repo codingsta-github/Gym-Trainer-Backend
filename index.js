@@ -20,6 +20,7 @@ async function run() {
   try {
     client.connect();
     const serviceCollection = client.db("gym-trainer").collection("service");
+    const orderCollection = client.db("gym-trainer").collection("order");
 
 
     app.get("/workout", async (req, res) => {
@@ -38,6 +39,11 @@ async function run() {
       const result = await serviceCollection.findOne(query);
       res.send(result);
     });
+    app.post("/order",async(req,res)=>{
+      const order=req.body
+      const result=await orderCollection.insertOne(order)
+      res.send(result)
+    })
   } finally {
   }
 }
