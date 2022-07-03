@@ -22,14 +22,13 @@ async function run() {
     const serviceCollection = client.db("gym-trainer").collection("service");
     const orderCollection = client.db("gym-trainer").collection("order");
 
-
     app.get("/workout", async (req, res) => {
-      const query = {category:"workout training"};
+      const query = { category: "workout training" };
       const results = await serviceCollection.find(query).toArray();
       res.send(results);
     });
     app.get("/product", async (req, res) => {
-      const query = {category:"product"};
+      const query = { category: "product" };
       const results = await serviceCollection.find(query).toArray();
       res.send(results);
     });
@@ -39,11 +38,17 @@ async function run() {
       const result = await serviceCollection.findOne(query);
       res.send(result);
     });
-    app.post("/order",async(req,res)=>{
-      const order=req.body
-      const result=await orderCollection.insertOne(order)
+    app.get("/order/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await orderCollection.find(query).toArray();
       res.send(result)
-    })
+    });
+    app.post("/order", async (req, res) => {
+      const order = req.body;
+      const result = await orderCollection.insertOne(order);
+      res.send(result);
+    });
   } finally {
   }
 }
