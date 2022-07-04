@@ -42,11 +42,17 @@ async function run() {
       const email = req.params.email;
       const query = { email: email };
       const result = await orderCollection.find(query).toArray();
-      res.send(result)
+      res.send(result);
     });
     app.post("/order", async (req, res) => {
       const order = req.body;
       const result = await orderCollection.insertOne(order);
+      res.send(result);
+    });
+    app.delete("/order/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await orderCollection.deleteOne(query);
       res.send(result);
     });
   } finally {
